@@ -100,8 +100,10 @@ if (HTMLWidgets.shinyMode) {
       console.log(processInstance);
       var control = processInstance.getPlaybackControl();
       var renderer = processInstance.getRenderer();
+      var data = renderer.getData();
+      console.log(data);
       var el = processInstance.getEl();
-      control.renderPlaybackControl(renderer.getData(), renderer.getSvg(), el.offsetWidth, false);
+      control.renderPlaybackControl(data, renderer.getSvg(), el.offsetWidth, false);
       renderer.resize(el.offsetWidth, Math.max(0, el.offsetHeight - control.getHeight()));
     }
   });
