@@ -97,13 +97,16 @@ if (HTMLWidgets.shinyMode) {
     // get container id
     var processInstance = HTMLWidgets.find('#' + e.id);
     if (typeof processInstance != 'undefined') {
-      console.log(processInstance);
       var control = processInstance.getPlaybackControl();
       var renderer = processInstance.getRenderer();
+      var scales = processInstance.getScales();
+      var el = processInstance.getEl();
+
       var data = renderer.getData();
       data.duration = e.duration;
       console.log(data);
-      var el = processInstance.getEl();
+
+      scales.update(data);
       control.renderPlaybackControl(data, renderer.getSvg(), el.offsetWidth, false);
       renderer.resize(el.offsetWidth, Math.max(0, el.offsetHeight - control.getHeight()));
     }
