@@ -73,6 +73,18 @@ HTMLWidgets.widget({
 
       getPlaybackControl: function() {
         return control;
+      },
+
+      getRenderer: function() {
+        return renderer;
+      },
+
+      getScales: function() {
+        return scales;
+      },
+
+      getEl: function() {
+        return el;
       }
 
     };
