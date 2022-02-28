@@ -90,3 +90,19 @@ HTMLWidgets.widget({
     };
   }
 });
+
+
+if (HTMLWidgets.shinyMode) {
+  Shiny.addCustomMessageHandler('update_timeline_processAnimater', function(data){
+    // get container id
+    var processInstance = HTMLWidgets.find('#' + data.id);
+    if (typeof processInstance != 'undefined') {
+      console.log(processInstance);
+      var control = processInstance.getPlaybackControl();
+      var renderer = processInstance.getRenderer();
+      var el = processInstance.getEl();
+      control.renderPlaybackControl(renderer.getData(), renderer.getSvg(), el.offsetWidth, false);
+      renderer.resize(el.offsetWidth, Math.max(0, el.offsetHeight - control.getHeight()));
+    }
+  });
+}
