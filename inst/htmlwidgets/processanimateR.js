@@ -93,14 +93,15 @@ HTMLWidgets.widget({
 
 
 if (HTMLWidgets.shinyMode) {
-  Shiny.addCustomMessageHandler('update_timeline_processAnimater', function(data){
+  Shiny.addCustomMessageHandler('update_timeline_processAnimater', function(e){
     // get container id
-    var processInstance = HTMLWidgets.find('#' + data.id);
+    var processInstance = HTMLWidgets.find('#' + e.id);
     if (typeof processInstance != 'undefined') {
       console.log(processInstance);
       var control = processInstance.getPlaybackControl();
       var renderer = processInstance.getRenderer();
       var data = renderer.getData();
+      data.duration = e.duration;
       console.log(data);
       var el = processInstance.getEl();
       control.renderPlaybackControl(data, renderer.getSvg(), el.offsetWidth, false);
